@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="NMID_StuInfo:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/NMID_StuInfo_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="NMID_StuInfo/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="NMID_StuInfo" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
