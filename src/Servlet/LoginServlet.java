@@ -1,5 +1,6 @@
 package Servlet;
 
+import Bean.Student;
 import Bean.User;
 import Dao.JDBCUtil;
 import Dao.UserDao;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.List;
 
 public class LoginServlet extends HttpServlet {
     JDBCUtil db = new JDBCUtil();
@@ -33,13 +35,15 @@ public class LoginServlet extends HttpServlet {
             User currentUser = userDao.login(con,user);//index.jsp获取的账号和密码与数据库进行交互
             if (currentUser == null){
                 request.setAttribute("error","用户名或密码错误");
-                request.setAttribute("username",username);
-                request.setAttribute("password",password);
-                request.getRequestDispatcher("index.jsp").forward(request,response);
+//                request.setAttribute("username",username);
+//                request.setAttribute("password",password);
+                request.getRequestDispatcher("login.jsp").forward(request,response);
             } else {
                 HttpSession session = request.getSession();//将对象保存至session中
                 session.setAttribute("currentUser",currentUser);
-                response.sendRedirect("main.jsp");//跳转至主页面
+                List<Student> list = userDao.getAll();
+                request.setAttribute("list",list);
+                request.getRequestDispatcher("main.jsp").forward(request,response);//跳转至主页面
             }
         } catch (Exception e){
             e.printStackTrace();

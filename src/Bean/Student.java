@@ -10,6 +10,9 @@ public class Student {
     private int age;
     private Date birthday;
 
+    public Student(){
+        super();
+    }
     public Student(String stuID, String name, String gender, int age, Date birthday){
         this.stuID = stuID;
         this.name = name;
